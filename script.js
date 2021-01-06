@@ -1,13 +1,13 @@
 $(document).ready(function () {
 
 // API Key for our calls to OpenWeather API
-var APIkey = "842d57b6e39252f9e8cbcc173b19fcdd";
+let APIkey = "842d57b6e39252f9e8cbcc173b19fcdd";
 
 // OnClick listener for search button
 $("#search-button").on("click", function () {
 
     // Grab search value, store in variable, then clear out form field
-    var searchValue = $("#search-value").val()
+    let searchValue = $("#search-value").val()
     console.log(searchValue);
     $("#search-value").val("")
 
@@ -25,15 +25,20 @@ function searchWeather(searchValue) {
         dataType: "json",
         success: function(data) {
             // Write code here to determine if item should be pushed to local storage
+            makeRow(searchValue);
         }
     }).then(function(data) {
         console.log(data);
+        
     })
 }
 
 // function for adding search terms as an LI item
-function makeRow() {
-
+function makeRow(searchValue) {
+    console.log(searchValue);
+    let li =$("<li>").addClass("list-group-item list-group-item-action").text(searchValue);
+    $(".history").append(li);
+    console.log(li);
 }
 
 
